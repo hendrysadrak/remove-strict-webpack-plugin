@@ -7,5 +7,10 @@
     "name": "Hendry Sadrak",
     "url": "https://www.hendrysadrak.com"
   },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "use strict"
+  ],
   "license": "MIT"
 }
