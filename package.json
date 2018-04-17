@@ -1,0 +1,11 @@
+{
+  "name": "remove-strict-webpack-plugin",
+  "version": "0.0.1",
+  "description": "Removes \"use strict\" from transpiled es6->es5 code",
+  "main": "index.js",
+  "author": {
+    "name": "Hendry Sadrak",
+    "url": "https://www.hendrysadrak.com"
+  },
+  "license": "MIT"
+}
