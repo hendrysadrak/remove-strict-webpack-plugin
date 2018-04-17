@@ -1,6 +1,6 @@
 {
   "name": "remove-strict-webpack-plugin",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Removes \"use strict\" from transpiled es6->es5 code",
   "main": "index.js",
   "author": {
