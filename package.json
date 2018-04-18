@@ -7,10 +7,17 @@
     "name": "Hendry Sadrak",
     "url": "https://www.hendrysadrak.com"
   },
+  "repository": "hendrysadrak/remove-strict-webpack-plugin",
   "keywords": [
     "webpack",
     "plugin",
     "use strict"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6"
+  }
 }
