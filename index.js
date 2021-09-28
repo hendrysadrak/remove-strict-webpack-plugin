@@ -1,35 +1,26 @@
-const STRICT_STRING      = '"use strict";\n';
-const REPLACEMENT_STRING = ';\n';
-
-
-class DestoryStrict {
-  apply( moduleTemplate ) {
-    moduleTemplate.plugin( "render", ( moduleSource ) => {
-      const index = moduleSource.children.indexOf( STRICT_STRING );
-
-      if ( index > -1 ) {
-        moduleSource.children.splice( index, 1, REPLACEMENT_STRING );
-      }
-
-      return moduleSource;
-    } );
-  }
-}
-
+const { Compilation, sources } = require('webpack');
 
 class RemoveStrictPlugin {
-  apply( compiler ) {
-    /*
-     * Attach to a hook after "compilation"
-     * https://webpack.js.org/api/compiler/#event-hooks
-     */
-    compiler.plugin( "make", ( compilation, done ) => {
-      compilation.moduleTemplate.apply( new DestoryStrict() );
+  // eslint-disable-next-line
+  apply(compiler) {  
+    compiler.hooks.make.tap('RemoveStrictPlugin', (compilation) => {
+      compilation.hooks.processAssets.tap(
+        {
+          name: 'Replace',
+          stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE,
+        },
+        () => {
+          Object.keys(compilation.assets).forEach((key) => {
+            const file = compilation.getAsset(key);
+            const source = file.source.source();
+            const updatedSource = source.replace(/"use strict";\n/g, ';\n');
 
-      done();
-    } );
+            compilation.updateAsset(key, new sources.RawSource(updatedSource));
+          });
+        },
+      );
+    });
   }
 }
-
 
 module.exports = RemoveStrictPlugin;
